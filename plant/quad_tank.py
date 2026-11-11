@@ -47,33 +47,35 @@ gamma2 = 0.6  # Split ratio for Tank 2
 
 
 #Function to calculate the change in water level over time
-def quad_tank_dynamics(h1, h2, h3, h4, u1, u2):
-   
-#pump flow rates to tanks: Add controlable pumps flow rate later
-Q1_in = (1 - gamma1) * Q1  
-Q3_in = gamma1 * Q1  
+def quad_tank_dynamics(h,u):
+    h1, h2, h3, h4 = h  # Unpack the water levels of the tanks
 
-Q2_in = (1 - gamma2) * Q2  
-Q4_in = gamma2 * Q2  
+   u1, u2 = u  # Unpack the control inputs (pump flow rates)
+    #pump flow rates to tanks: Add controlable pumps flow rate later
+    Q1_in = (1 - gamma1) * Q1  
+    Q3_in = gamma1 * Q1  
 
-
-Q1_out = a1 * np.sqrt(2 * g * h1)  # Outflow rate from Tank 1
-Q2_out = a2 * np.sqrt(2 * g * h2)  # Outflow rate from Tank 2
-
-Q3_total_in = Q1_out +  Q3_in 
-Q4_total_in = Q2_out +  Q4_in
+    Q2_in = (1 - gamma2) * Q2  
+    Q4_in = gamma2 * Q2  
 
 
-Q3_out = a3 * np.sqrt(2 * g * h3)
-Q4_out = a4 * np.sqrt(2 * g * h4)
+    Q1_out = a1 * np.sqrt(2 * g * h1)  # Outflow rate from Tank 1
+    Q2_out = a2 * np.sqrt(2 * g * h2)  # Outflow rate from Tank 2
 
-#calculate the change in water level over time
-dh1_dt = (Q1_in - Q1_out) / A1
-dh2_dt = (Q2_in - Q2_out) / A2
-dh3_dt = (Q3_total_in - Q3_out) / A3
-dh4_dt = (Q4_total_in - Q4_out) / A4
+    Q3_total_in = Q1_out +  Q3_in 
+    Q4_total_in = Q2_out +  Q4_in
 
+
+    Q3_out = a3 * np.sqrt(2 * g * h3)
+    Q4_out = a4 * np.sqrt(2 * g * h4)
+
+    #calculate the change in water level over time
+    dh1_dt = (Q1_in - Q1_out) / A1
+    dh2_dt = (Q2_in - Q2_out) / A2
+    dh3_dt = (Q3_total_in - Q3_out) / A3
+    dh4_dt = (Q4_total_in - Q4_out) / A4
 return np.array([dh1_dt, dh2_dt, dh3_dt, dh4_dt])
+
 
 
 #calculate the new water level after one time step
