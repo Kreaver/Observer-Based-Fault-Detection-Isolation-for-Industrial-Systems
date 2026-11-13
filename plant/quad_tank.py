@@ -84,3 +84,19 @@ def quad_tank_dynamics(h, u):
     dh4_dt = (Q4_pump + Q2_out - Q4_out) / A4   # top-right drains into tank 4
 
     return np.array([dh1_dt, dh2_dt, dh3_dt, dh4_dt])
+
+
+
+def steady_state(u):
+    """Compute the steady-state water levels for given pump voltages u."""
+    u1, u2 = u
+    Q1 = k1 * u1
+    Q2 = k2 * u2
+
+    # Steady-state outflows equal inflows
+    h1_ss = (Q2 * (1 - gamma2) / a1) ** 2 / (2 * g)
+    h2_ss = (Q1 * (1 - gamma1) / a2) ** 2 / (2 * g)
+    h3_ss = ((gamma1 * Q1 + a1 * np.sqrt(2 * g * h1_ss)) / a3) ** 2 / (2 * g)
+    h4_ss = ((gamma2 * Q2 + a2 * np.sqrt(2 * g * h2_ss)) / a4) ** 2 / (2 * g)
+
+    return np.array([h1_ss, h2_ss, h3_ss, h4_ss])

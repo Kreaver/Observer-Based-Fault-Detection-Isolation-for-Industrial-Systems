@@ -1,12 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from plant.quad_tank import quad_tank_dynamics
+from plant.quad_tank import quad_tank_dynamics, steady_state
 
 # Initial water levels (m)
-h = np.array([0.2, 0.2, 0.2, 0.2])
+h = np.array([0.5, 0.35, 0.22, 0.1])
 
 # Pump inputs (V)
-u = np.array([2.0, 2.0])
+u = np.array([3.0, 3.0])
 
 # Time step (s) and total simulation time (s)
 dt = 0.1
@@ -43,3 +43,8 @@ plt.legend()
 plt.grid()
 plt.savefig("tank_levels.png", dpi=150)
 plt.show()
+
+u = np.array([3.0, 3.0])
+h0 = steady_state(u)
+print(h0)
+print(quad_tank_dynamics(h0, u))
