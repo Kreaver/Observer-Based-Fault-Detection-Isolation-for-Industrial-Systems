@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from plant.quad_tank import quad_tank_dynamics, steady_state
 
 # Initial water levels (m)
-h = np.array([0.5, 0.35, 0.22, 0.1])
+h = np.array([0.5, 0.15, 0.17, 0.1])
 
 # Pump inputs (V)
 u = np.array([3.0, 3.0])

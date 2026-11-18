@@ -11,7 +11,7 @@ from plant import quad_tank as qt
 from plant.quad_tank import quad_tank_dynamics, steady_state
 
 # ---------------- Settings (edit these) ----------------
-h = np.array([0.05, 0.05, 0.05, 0.05])  # initial levels (m)
+h = np.array([0.05, 0.15, 0.17, 0.1])  # initial levels (m)
 u = np.array([3.0, 3.0])                # pump voltages (V)
 dt = 0.1                                # integration step (s)
 t_end = 1000.0                          # simulated time (s)

@@ -100,3 +100,6 @@ def steady_state(u):
     h4_ss = ((gamma2 * Q2 + a2 * np.sqrt(2 * g * h2_ss)) / a4) ** 2 / (2 * g)
 
     return np.array([h1_ss, h2_ss, h3_ss, h4_ss])
+
+def linearize(h, u):
+    return
